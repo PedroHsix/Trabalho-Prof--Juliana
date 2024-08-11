@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url("image/img.jpg");
+            background-position: center center;
+            color: white;
+        }
+        .container {
+            background-color: rgb(12, 9, 148);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        p {
+            font-size: 18px;
+            margin: 20px 0;
+            color: white;
+        }
+        button {
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            background-color: #000000;
+            color: rgb(255, 255, 255);
+            width: 50%;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>   
+<body>
+    <div class="container">
+        <h1>Resultado</h1>
+        <p id="resultado"></p>
+        <button onclick="voltar()">Voltar</button>
+    </div>
+    <script>
+        function obterParametroUrl(nome) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(nome);
+        }
+
+        function exibirResultado() {
+            const nome = obterParametroUrl('nome');
+            const anosRestantes = obterParametroUrl('anos');
+            const resultadoTexto = anosRestantes > 0 
+                ? `Olá ${nome}, faltam ${anosRestantes} anos para você completar 100 anos.` 
+                : `${nome}, parabéns! Você já alcançou ou ultrapassou 100 anos.`;
+            document.getElementById('resultado').innerText = resultadoTexto;
+        }
+
+        function voltar() {
+            window.location.href = 'index.html';
+        }
+
+        exibirResultado();
+    </script>
+</body>
+</html>
